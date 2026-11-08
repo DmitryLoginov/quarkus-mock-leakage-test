@@ -1,4 +1,6 @@
 target/
+.m2/
+.tmp/
 .worktrees/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
