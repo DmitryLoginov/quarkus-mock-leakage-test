@@ -96,7 +96,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire-plugin.version}</version>
                 <configuration>
-                    <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar} -Xshare:off</argLine>
+                    <argLine>@{argLine} -javaagent:"${org.mockito:mockito-core:jar}" -Xshare:off</argLine>
                     <includes>
                         <include>${surefire.includes}</include>
                     </includes>
