@@ -19,6 +19,8 @@
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>3.40.1.1</quarkus.platform.version>
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
+        <surefire.includes>**/*Test.java</surefire.includes>
+        <surefire.excludes>**/*FailureDemoTest.java</surefire.excludes>
     </properties>
 
     <dependencyManagement>
@@ -95,6 +97,12 @@
                 <version>${surefire-plugin.version}</version>
                 <configuration>
                     <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar} -Xshare:off</argLine>
+                    <includes>
+                        <include>${surefire.includes}</include>
+                    </includes>
+                    <excludes>
+                        <exclude>${surefire.excludes}</exclude>
+                    </excludes>
                     <systemPropertyVariables>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <junit.jupiter.testclass.order.default>org.junit.jupiter.api.ClassOrderer$ClassName</junit.jupiter.testclass.order.default>
@@ -104,5 +112,15 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>failure-demo</id>
+            <properties>
+                <surefire.includes>**/*FailureDemoTest.java</surefire.includes>
+                <surefire.excludes>**/__no_excluded_tests__.java</surefire.excludes>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
